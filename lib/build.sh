@@ -182,7 +182,17 @@ function build_dependencies() {
       info "Pruning unused dependencies"
       npm prune 2>&1 | indent
       info "Installing any new modules"
-      npm install --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
+
+
+      # install dependencies with npm
+      echo "-----> Installing dependencies with npm $NPM_VERSION"
+      cd $BUILD_DIR
+      if [ "${PIPESTATUS[*]}" != "0 0" ]; then
+        echo " !     Failed to install dependencies with npm"
+        exit 1
+
+
+      HOME="$BUILD_DIR" GIT_DIR=".git" npm install --userconfig $build_dir/.npmrc 2>&1 | indent
     else
       info "$cache_status"
       info "Installing node modules"
