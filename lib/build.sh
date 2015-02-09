@@ -187,7 +187,7 @@ function build_dependencies() {
       info "$cache_status"
       info "Installing node modules"
       touch $build_dir/.npmrc
-      npm install --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
+      HOME="$BUILD_DIR" GIT_DIR=".git" npm install --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
     fi
   fi
 }
