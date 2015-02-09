@@ -180,7 +180,7 @@ function build_dependencies() {
       info "Restoring node modules from cache"
       cp -r $cache_dir/node/node_modules $build_dir/
       info "Pruning unused dependencies"
-      npm prune 2>&1 | indent
+      #npm prune 2>&1 | indent
       info "Installing any new modules (JSF)"
       HOME="$BUILD_DIR" GIT_DIR=".git" npm install --userconfig $build_dir/.npmrc 2>&1 | indent
     else
