@@ -181,13 +181,13 @@ function build_dependencies() {
       cp -r $cache_dir/node/node_modules $build_dir/
       info "Pruning unused dependencies"
       npm prune 2>&1 | indent
-      info "Installing any new modules"
+      info "Installing any new modules (JSF)"
       HOME="$BUILD_DIR" GIT_DIR=".git" npm install --userconfig $build_dir/.npmrc 2>&1 | indent
     else
       info "$cache_status"
-      info "Installing node modules"
+      info "Installing node modules (JSF)"
       touch $build_dir/.npmrc
-      HOME="$BUILD_DIR" GIT_DIR=".git" npm install --quiet --userconfig $build_dir/.npmrc 2>&1 | indent
+      HOME="$BUILD_DIR" GIT_DIR=".git" npm install --userconfig $build_dir/.npmrc 2>&1 | indent
     fi
   fi
 }
